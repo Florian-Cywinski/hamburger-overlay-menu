@@ -40,7 +40,7 @@
   display: flex;  /* To be able to align the line */
   align-items: center;  /* To have the line centered */
   justify-content: center;  /* To have the line centered */
-  transition: all 0.4s ease;
+  transition: all 0.4s ease;  /* To transform the burger into an x - .menu-wrap .toggler:checked + .hamburger > div:before */
 }
 
 /* Hamburger Lines - Top & Bottom lines - the two lines are initially superimposed */
@@ -58,5 +58,22 @@
 /* Moves the bottom line finally down */
 .menu-wrap .hamburger > div::after {
   top: 10px;
+}
+
+/* Toggler Animation */
+.menu-wrap .toggler:checked + .hamburger > div {  /* :checked is a pseudo class (only if it's checked) - + if .hamburger > div is right after .toggler:checked - next sibling */
+  transform: rotate(135deg);  /* To rotate the three lines (burger) */
+}
+
+/* Turns Lines Into X */
+.menu-wrap .toggler:checked + .hamburger > div:before,
+.menu-wrap .toggler:checked + .hamburger > div:after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+/* Rotate On Hover When Checked */
+.menu-wrap .toggler:checked:hover + .hamburger > div {
+  transform: rotate(225deg);
 }
 
