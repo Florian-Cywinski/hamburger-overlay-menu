@@ -1,0 +1,62 @@
+.menu-wrap {  /* It wraps the whole burger menu */
+  position: fixed;  /* To deactivate the scroll option - the menu should not move out of the viewport */
+  top: 0;
+  left: 0;
+  z-index: 1; /* To have it on top */
+}
+
+.menu-wrap .toggler { /* checkbox is just for functionality */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; /* To have it on top - it's invisible but for functionality */
+  cursor: pointer;  /* To have a pointer instead of a cursor when hovering over it */
+  width: 50px;  /* The width of the checkbox */
+  height: 50px; /* The height of the checkbox */
+  opacity: 0; /* To make the checkbox invisible (checkbox is just for functionality) */
+}
+
+.menu-wrap .hamburger { /* .hamburger is the actual hamburger menu */
+  position: absolute;
+  top: 0; /* The same position as checkbox */
+  left: 0;  /* The same position as checkbox */
+  z-index: 1; /* To have it under the checkbox */
+  width: 60px;
+  height: 60px;
+  padding: 1rem;
+  background: var(--primary-color); /* To have the menu background the same color as the background with its transparentcy */
+  display: flex;  /* To be able to align the three lines of the menu */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hamburger Line - just the middle line */
+.menu-wrap .hamburger > div { /* > to get the immediate div */
+  position: relative;
+  flex: none; /* The item is sized according to its width and height properties. It is fully inflexible: it neither shrinks nor grows in relation to the flex container. This is equivalent to setting "flex: 0 0 auto". */
+  width: 100%;  /* The length of the line */
+  height: 2px;  /* The line width */
+  background: #fff;
+  display: flex;  /* To be able to align the line */
+  align-items: center;  /* To have the line centered */
+  justify-content: center;  /* To have the line centered */
+  transition: all 0.4s ease;
+}
+
+/* Hamburger Lines - Top & Bottom lines - the two lines are initially superimposed */
+.menu-wrap .hamburger > div::before,
+.menu-wrap .hamburger > div::after {
+  content: '';
+  position: absolute; /* To have it absolute to the relative div (.hamburger > div) */
+  z-index: 1;
+  top: -10px; /* To move it up by 10px - the top line */
+  width: 100%;
+  height: 2px;
+  background: inherit;  /* To inherit the background color from its parent (.hamburger > div) */
+}
+
+/* Moves the bottom line finally down */
+.menu-wrap .hamburger > div::after {
+  top: 10px;
+}
+
