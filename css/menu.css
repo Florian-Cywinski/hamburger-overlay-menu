@@ -77,3 +77,68 @@
   transform: rotate(225deg);
 }
 
+/* Show Menu when the checkbox is checked */
+.menu-wrap .toggler:checked ~ .menu { /* ~ because .menu is preceded (vorangegangen) by .toggler:checked with the same parent */
+  visibility: visible;  /* To show the menu when the checkbox is checked */
+}
+
+.menu-wrap .toggler:checked ~ .menu > div { /* The background overlay for the menu */
+  transform: scale(1);  /* To show the background overlay when the checkbox is checked - initially it is set to transform: scale(0); */
+  transition-duration: var(--menu-speed);
+}
+
+.menu-wrap .toggler:checked ~ .menu > div > div { /* ~ because .menu is preceded (vorangegangen) by .toggler:checked with the same parent */
+  opacity: 1; /* To make it visible when the checkbox is checked */
+  transition:  opacity 0.4s ease 0.4s;
+}
+
+.menu-wrap .menu {  /* The menu itself */
+  position: fixed;  /* An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled.  */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden; /* Initially the menu is hidden - it changes when the checkbox is checked */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-wrap .menu > div {  /* The background overlay for the menu */
+  background: var(--overlay-color);
+  border-radius: 50%; /* To have a round background when it comes in */
+  width: 300vw; /* To don't see the round background after it cames in (transition) */
+  height: 300vw;
+  display: flex;  /* To be able to center the content of the menu */
+  flex: none; /* To exclude the background circle from the limit of the container (90vw) - The item is sized according to its width and height properties. It is fully inflexible: it neither shrinks nor grows in relation to the flex container. This is equivalent to setting "flex: 0 0 auto". */
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);  /* To have the menu at the beginning not there - it changes after the checkbox is checked */
+  transition: all 0.4s ease;  /* To get the menu */
+}
+
+.menu-wrap .menu > div > div {  /* To target the div after the background overlay div */
+  text-align: center;
+  max-width: 90vw;
+  max-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.menu-wrap .menu > div > div > ul > li {
+  list-style: none; /* To get rid of the bullet points */
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.menu-wrap .menu > div > div > ul > li > a {
+  color: inherit; /* From li */
+  text-decoration: none;  /* To get rid of the underlines */
+  transition: color 0.4s ease;  /* For the hover effect */
+}
+
+.menu-wrap .menu > div > div > ul > li > a:hover {
+  color: var(--secondary-color);
+}
